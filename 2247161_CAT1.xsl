@@ -4,7 +4,7 @@
 <html>
 <head><title>La Classica #123 abc road</title></head>
     <body style="font-family:Arial;font-size:12pt;background-color:#EEEEEE">
-        <h1>La Classica<br>#123 abc road</h1>
+        <h1>La Classica @ #123 abc road</h1>
         <h2>La Classic Menu</h2>
         <table border="1">
             <tr bgcolor="#06CCF9">
