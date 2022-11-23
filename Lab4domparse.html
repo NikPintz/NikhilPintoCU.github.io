@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Carservice</h2>
+<button type="button" onclick="loadXMLDoc()">Show the cars</button>
+<div id="disp"></div>
+<script>
+function loadXMLDoc() {       
+    var xmlfile;
+    if(window.XMLHttpRequest){xmlfile = new XMLHttpRequest();}      
+    else{xmlfile=new ActiveXObject("Microsoft.XMLHTTP");}                    
+    xmlfile.onreadystatechange = function() {                  /*function to do the actual load and display*/
+        if (this.readyState == 4 && this.status == 200) {    /*this function is needed to confirm active working connection*/
+            myFunction(this);
+        }
+    };
+    xmlfile.open("GET", "lab3.xml", true);
+    xmlfile.send();
+}
+function myFunction(xml) {
+    var x, i, xmlDoc;
+    xmlDoc = xml.responseXML;
+    var table="<table border='1px'><tr><th>CarID</th><th>OwnerID</th><th>ServiceID</th><th>Model</th><th>Year</th><th>LastService</th><th>FirstService</th></tr>";
+    txt = "";
+    x = xmlDoc.getElementsByTagName("car");
+    for (i = 0; i< x.length; i++) {
+        table += "<tr><td>" +
+        x[i].getElementsByTagName("carID")[0].childNodes[0].nodeValue +
+        "</td><td>" +
+        x[i].getElementsByTagName("ownerID")[0].childNodes[0].nodeValue +
+        "</td><td>" +
+        x[i].getElementsByTagName("serviceID")[0].childNodes[0].nodeValue +
+        "</td><td>" +
+        x[i].getElementsByTagName("model")[0].childNodes[0].nodeValue +
+        "</td><td>" +
+        x[i].getElementsByTagName("year")[0].childNodes[0].nodeValue +
+        "</td><td>" +
+        x[i].getElementsByTagName("lastservice")[0].childNodes[0].nodeValue +
+        "</td><td>" +
+        x[i].getElementsByTagName("nextservice")[0].childNodes[0].nodeValue +
+        "</td></tr>"
+    }
+    document.getElementById("disp").innerHTML = table;
+}
+</script>
+</body>
+</html>
