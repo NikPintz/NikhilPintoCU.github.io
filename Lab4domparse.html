@@ -3,16 +3,22 @@
 <body>
 <h2>Carservice</h2>
 <button type="button" onclick="loadXMLDoc()">Show the cars</button>
+<button type="button" onclick="addrow()">Add a row</button>
+<p>Note that there may be a few failure alerts before the success occurs</p>
 <div id="disp"></div>
 <script>
+var b=0;
+var table;
 function loadXMLDoc() {       
     var xmlfile;
     if(window.XMLHttpRequest){xmlfile = new XMLHttpRequest();}      
     else{xmlfile=new ActiveXObject("Microsoft.XMLHTTP");}                    
     xmlfile.onreadystatechange = function() {                  /*function to do the actual load and display*/
         if (this.readyState == 4 && this.status == 200) {    /*this function is needed to confirm active working connection*/
+            alert("SUCCESS");
             myFunction(this);
         }
+        else{alert("FAILURE")}
     };
     xmlfile.open("GET", "lab3.xml", true);
     xmlfile.send();
@@ -20,10 +26,10 @@ function loadXMLDoc() {
 function myFunction(xml) {
     var x, i, xmlDoc;
     xmlDoc = xml.responseXML;
-    var table="<table border='1px'><tr><th>CarID</th><th>OwnerID</th><th>ServiceID</th><th>Model</th><th>Year</th><th>LastService</th><th>FirstService</th></tr>";
-    txt = "";
     x = xmlDoc.getElementsByTagName("car");
+    table="<table border='1px'><tr><th>CarID</th><th>OwnerID</th><th>ServiceID</th><th>Model</th><th>Year</th><th>LastService</th><th>FirstService</th></tr>";
     for (i = 0; i< x.length; i++) {
+        b++;
         table += "<tr id='row"+i+"'><td>" +
         x[i].getElementsByTagName("carID")[0].childNodes[0].nodeValue +
         "</td><td>" +
@@ -38,15 +44,20 @@ function myFunction(xml) {
         x[i].getElementsByTagName("lastservice")[0].childNodes[0].nodeValue +
         "</td><td>" +
         x[i].getElementsByTagName("nextservice")[0].childNodes[0].nodeValue +
-        "</td><td><input type='button' value='remove' id="+i+" onclick=ll(id)></tr>"
+        "</td><td><input type='button' value='remove row' id="+i+" onclick=rowremove(id)></tr>"
     }
     document.getElementById("disp").innerHTML = table;
    
 }
-
-function ll(a){
+function rowremove(a){
         document.getElementById("row"+a).remove();
-    }
+}
+function addrow(){
+    table+= "<tr id='row"+b+"'><td>"+b+"</td><td>"+b+"</td><td>"+b+"</td><td>model"+b+"</td><td>2006</td><td>NA</td><td>NA</td><td><input type='button' value='remove row' id="+b+" onclick=rowremove(id)></tr>";
+    b++;
+    document.getElementById("disp").innerHTML = table;
+    
+}
 </script>
 </body>
 </html>
