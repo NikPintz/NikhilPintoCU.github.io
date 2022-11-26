@@ -24,7 +24,7 @@ function myFunction(xml) {
     txt = "";
     x = xmlDoc.getElementsByTagName("car");
     for (i = 0; i< x.length; i++) {
-        table += "<tr><td>" +
+        table += "<tr id='row"+i+"'><td>" +
         x[i].getElementsByTagName("carID")[0].childNodes[0].nodeValue +
         "</td><td>" +
         x[i].getElementsByTagName("ownerID")[0].childNodes[0].nodeValue +
@@ -38,10 +38,15 @@ function myFunction(xml) {
         x[i].getElementsByTagName("lastservice")[0].childNodes[0].nodeValue +
         "</td><td>" +
         x[i].getElementsByTagName("nextservice")[0].childNodes[0].nodeValue +
-        "</td></tr>"
+        "</td><td><input type='button' value='remove' id="+i+" onclick=ll(id)></tr>"
     }
     document.getElementById("disp").innerHTML = table;
+   
 }
+
+function ll(a){
+        document.getElementById("row"+a).remove();
+    }
 </script>
 </body>
 </html>
