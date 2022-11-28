@@ -6,6 +6,7 @@
 <button type="button" onclick="addrow()">Add a row</button>
 <p>Note that there may be a few failure alerts before the success occurs</p>
 <div id="disp"></div>
+<p id=""out></p>
 <script>
 var b=0;
 var table;
@@ -44,7 +45,9 @@ function myFunction(xml) {
         x[i].getElementsByTagName("lastservice")[0].childNodes[0].nodeValue +
         "</td><td>" +
         x[i].getElementsByTagName("nextservice")[0].childNodes[0].nodeValue +
-        "</td><td><input type='button' value='remove row' id="+i+" onclick=rowremove(id)></tr>"
+        "</td><td><input type='button' value='remove row' id="+i+" onclick=rowremove(id)></td>"+
+        "<td><input type='button' value='remove cell[1]' id="+i+" onclick=cellremove(id)></td>"+
+        "<td><input type='button' value='replace cell[6]' id="+i+" onclick=cellreplace(id)></td></tr>"
     }
     document.getElementById("disp").innerHTML = table;
    
@@ -52,11 +55,24 @@ function myFunction(xml) {
 function rowremove(a){
         document.getElementById("row"+a).remove();
 }
+function cellremove(a){
+        /*var removed = document.getElementById("row"+a).childNodes[1].remove();
+        var blank = " "
+        document.insertBefore(document.getElementById("row"+a).childNodes[1],blank)*/
+        document.getElementById("row"+a).childNodes[1].innerHTML= " ";
+        /*document.getElementById("out").innerHTML=removed;*/
+}
 function addrow(){
-    table+= "<tr id='row"+b+"'><td>"+b+"</td><td>"+b+"</td><td>"+b+"</td><td>model"+b+"</td><td>2006</td><td>NA</td><td>NA</td><td><input type='button' value='remove row' id="+b+" onclick=rowremove(id)></tr>";
+    table+= "<tr id='row"+b+"'><td>"+b+"</td><td>"+b+"</td><td>"+b+"</td><td>model"+b+"</td><td>2006</td><td>NA</td><td>NA</td><td><input type='button' value='remove row' id="+b+" onclick=rowremove(id)></td>"+
+        "<td><input type='button' value='remove cell[1]' id="+b+" onclick=cellremove(id)></td>"+
+        "<td><input type='button' value='replace cell[6]' id="+b+" onclick=cellreplace(id)></td></tr>";
     b++;
     document.getElementById("disp").innerHTML = table;
     
+}
+function cellreplace(a){
+    document.getElementById("row"+a).childNodes[6].innerHTML= "REPLACED";
+
 }
 </script>
 </body>
