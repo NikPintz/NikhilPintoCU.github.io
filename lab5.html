@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Form Validation</title></head>
+    <script type="text/javascript">
+        function Validation(){
+            var email = document.form1.email.value;
+            var pw =document.form1.pw.value;
+            var flag=true;
+            var eform = /@(\w)+(\.in)$/
+            var pwmsg = "One of each type of character should appear in the middle as well, not only beginning/end."
+            if(!(eform.test(email))){alert("unofficial email used");flag=false}
+            if(document.form1.numcars.value < 0){alert("Num of cars must be >=0")}
+            if(flag==true){alert("Success")}
+        }
+    </script>
+    <body bgcolor="">
+        <h1 align="center">REGISTER</h1>
+        <form name="form1" onsubmit="return Validation()" method="dialog"> 
+        <table>
+            <tr><td align="left"><label for="email">Enter your email:</label></td>
+                <td><input id="email" type="email" name="email" required></td>
+            <td>(Use official email id of xyz@universityname.in only)</td></tr>
+            <tr><td align="left"><label for="phnum">PhNum:</label></td>
+                <td><input id="phnum" type="tel" name="phnum" maxlength="10" pattern="[0-9]{10}" required></td></tr>
+            <tr><td align="left"><label for="name">Name:</label></td>
+                <td><input id="name" type="text" name="name" pattern="[a-zA-Z\s]+"required></td></tr>
+            <tr><td align="left"><label for="pw">Password:</label></td>
+                <td><input id="pw" type="password" name="pw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+-={}[]:;><,./?~`])+" 
+                    title="At least one number, one uppercase and lowercase letter" required></td>
+                <td>(min 1 uppercase, lowercase, digit, special character. Ensure 1 of each in middle of password)
+                </td></tr>
+            <tr><td align="left"><label for="addr">Address:</label></td>
+                <td><input id="addr" type="text" name="addr" required></td></tr>
+            <tr><td align="left"><label for="datenow">Birthdate:</label></td>
+                <td><input id="datenow" type="date" name="datenow" required></td></tr>
+            <tr><td align="left"><label for="cars">How many cars do you own?</label></td>
+                <td><input id="numcars" type="number" name="'numcars" required></td></tr>
+        </table>     
+        <label for="rating">How would you rate this page?</label>
+        <input id="rating" type="range" name="rating"><br>
+        <p>If you have entered everything then your progress is:
+        <meter min="0" max="100" value="100"></meter></p>
+        <input type="submit">
+    </form></body>
+</html>
