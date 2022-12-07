@@ -10,3 +10,6 @@ To view the parser result: https://htmlpreview.github.io/?https://github.com/Nik
 
 
 Lab5: https://htmlpreview.github.io/?https://github.com/NikhilPintoCU/NikhilPintoCU.github.io/blob/main/lab5.html
+
+
+Lab 6: https://htmlpreview.github.io/?https://github.com/NikhilPintoCU/NikhilPintoCU.github.io/blob/main/Lab6cookies.html
