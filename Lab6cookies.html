@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head><title>Cookies</title></head>
+
+<body bgcolor="white">
+    <table>
+        <tr><td><label for="name">Name:</label></td>
+        <td><input type="text" id="name"><br></td></tr>
+        <tr><td><label for="email">Email:</label></td>
+        <td><input type="email" id="email"><br></td></tr>
+        <tr><td><label for="">Age:</label></td>
+        <td><input type="number" id="age"><br></td></tr>
+    </table>
+    
+    <label for="color">Choose Color:</label>
+    <select id="color" onchange="display()">
+        <option value="Select Color" selected disabled>Select Color</option>
+        <option value="#ff0000">Red</option>
+        <option value="#0099ff">Blue</option>
+        <option value="#33cc33">Green</option>
+    </select>
+    <br>    
+    <input type="button" value="Set Cookie" onclick="setCookie()">
+    <input type="button" value="Get Cookie" onclick="getCookie()">
+    <script>
+        function setCookie() {
+                document.cookie = "name=" + document.getElementById("name").value;
+                document.cookie = "email=" + document.getElementById("email").value;
+                document.cookie = "age=" + document.getElementById("age").value;
+                document.cookie = "bgcolor=" + document.getElementById("color").value;
+            }
+            function getCookie() {
+                if (document.cookie.length != 0) {
+                    alert("Name=" + document.getElementById("name").value + "\nEmail=" + document.getElementById("email").value + 
+                    " \nAge=" + document.getElementById("age").value + "\nBgcolor=" + document.getElementById("color").value);
+                }
+                else {
+                    alert("ERROR404 COOKIE NOT FOUND");
+                }
+            }
+        function display() {
+            var value = document.getElementById("color").value;
+            if (value != "Select Color") {
+                document.bgColor = value;
+                document.cookie = "color=" + value;
+            }
+        }
+        window.onload = function () {
+            if (document.cookie.length != 0) {
+                var array = document.cookie.split("=");
+                document.getElementById("color").value = array[1];
+                document.bgColor = array[1];
+            }
+        }
+    </script>
+</body>
+
+</html>
